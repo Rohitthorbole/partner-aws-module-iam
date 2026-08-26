@@ -5,3 +5,9 @@ resource "aws_iam_user" "iam_user" {
     Name = var.iam_user_name
   }
 }
+
+resource "aws_iam_user_policy" "iam_user_policy" {
+  name = "${var.iam_user_name}-policy"
+  user = aws_iam_user.iam_user[0].name
+  policy = var.iam_policy
+}
